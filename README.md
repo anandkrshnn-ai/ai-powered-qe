@@ -59,7 +59,15 @@ The traditional testing model is broken:
 
 We welcome contributions! See **[CONTRIBUTING.md](CONTRIBUTING.md)** for details.
 
-## License
+## Strategic Intent
+
+Quality Engineering is entering the **Era of Intelligence**. 
+
+Standard test automation is no longer enough to keep pace with the exponential growth of software complexity. This repository demonstrates how to leverage **Generative AI and Machine Learning** to move beyond manual script maintenance. By using AI to generate tests from natural language, predict where bugs will occur before code is merged, and automatically triage failure logs, we enable QE teams to operate at a scale previously impossible. 
+
+The goal is to transform the QE role from a "tester" to an **"Intelligence Architect"** who designs the systems that verify the software.
+
+## 🎯 Purpose
 
 MIT License — Use freely, attribute appreciated.
 
