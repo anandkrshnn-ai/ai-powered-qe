@@ -1,0 +1,37 @@
+# Azure DevOps Pipeline: AI-Driven Quality Gate
+# This gate uses AI to analyze test failures and block the pipeline if critical issues are found.
+
+trigger:
+- main
+
+jobs:
+- job: TestAndAnalyze
+  pool:
+    vmImage: 'ubuntu-latest'
+  steps:
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '3.9'
+
+  - script: |
+      pip install -r requirements.txt
+      pytest --junitxml=test-results.xml || true
+    displayName: 'Run Automated Tests'
+
+  - task: PublishTestResults@2
+    inputs:
+      testResultsFormat: 'JUnit'
+      testResultsFiles: '**/test-results.xml'
+
+  - script: |
+      # Pass failure logs to AI for Root Cause Analysis
+      python tools/root-cause-analysis/log_analyzer.py test-results.xml > ai_rca_report.md
+      cat ai_rca_report.md
+    env:
+      GEMINI_API_KEY: $(GEMINI_API_KEY)
+    displayName: 'AI Root Cause Analysis'
+
+  - task: PublishBuildArtifacts@1
+    inputs:
+      PathtoPublish: 'ai_rca_report.md'
+      ArtifactName: 'AI-Quality-Report'

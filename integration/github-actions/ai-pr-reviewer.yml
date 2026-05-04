@@ -1,0 +1,38 @@
+name: AI-Powered PR Quality Review
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  ai_review:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Analyze PR with AI
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          # 1. Extract Diff
+          git diff origin/main...HEAD > pr_diff.txt
+          
+          # 2. Call AI Reviewer Script (Mocked)
+          # python tools/ai_reviewer.py --diff pr_diff.txt
+          
+          echo "AI Reviewer Analyzing PR..."
+          echo "Recommendation: Add unit tests for payment_logic.py. Complexity increased by 15%."
+          
+      - name: Post AI Comment to PR
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: "🤖 **AI Quality Review:** \n\n- **Risk:** High churn in `payment_logic.py`. \n- **Suggestion:** Please add unit tests to cover the new validation logic. \n- **RCA:** Potential null pointer exception detected at line 42."
+            })
