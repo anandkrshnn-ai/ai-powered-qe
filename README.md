@@ -33,6 +33,7 @@ The traditional testing model is broken:
 
 ### 📚 **Frameworks & Strategy**
 - **[AI-QE Strategy Framework](docs/01-ai-qe-strategy-framework.md)** — Balancing speed with accuracy.
+- **[NemoClaw Build Guide](docs/03-building-nemoclaw-for-autonomous-qe.md)** — Secure runtime for autonomous QE agents.
 - **[Prompt Templates for QE](models/prompt-templates/)** — Curated prompts for unit, integration, and security testing.
 
 ### 🔗 **Integrations**
@@ -42,6 +43,7 @@ The traditional testing model is broken:
 ### 📖 **Examples & Case Studies**
 - [Case Study: 80% Faster Regression Suite Generation](examples/case-studies/regression-speedup.md)
 - [Example: Predicting Bugs in a Microservices Architecture](examples/case-studies/defect-prediction-demo.md)
+- **[Antigravity Awesome Skills](https://github.com/sickn33/antigravity-awesome-skills)** — Over 1,400+ agentic skills installed for QE orchestration.
 
 ## Tech stack
 
